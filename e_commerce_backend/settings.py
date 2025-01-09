@@ -10,7 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
+# import django
+
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'e_commerce_backend.settings')
+# django.setup()
+
+
+
 from pathlib import Path
+from datetime import timedelta 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,16 +38,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-# INSTALLED_APPS = [
-#     "django.contrib.admin",
-#     "django.contrib.auth",
-#     "django.contrib.contenttypes",
-#     "django.contrib.sessions",
-#     "django.contrib.messages",
-#     "django.contrib.staticfiles",
-# ]
-
 
 CUSTOM_APPS = [
     'rest_framework',
@@ -64,13 +63,13 @@ PROJECT_APPS = [
 
 
 # Django By Default apps 
-DJANGO_DEFAULT_APPS= [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+DJANGO_DEFAULT_APPS = [
+    "django.contrib.admin",          # Admin app
+    "django.contrib.auth",           # Auth app
+    "django.contrib.contenttypes",   # ContentType app
+    "django.contrib.sessions",       # Sessions app
+    "django.contrib.messages",       # Messages app
+    "django.contrib.staticfiles",    # Static files app
 ]
 
 
@@ -161,3 +160,35 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    
+    
+    
+    # 'DEFAULT_PAGINATION_CLASS': 'Employee.pagination.DynamicPageSizePagination',
+     # Default page size if not specified in the request
+    #  'PAGE_SIZE': 100, 
+    # 'MAX_PAGE_SIZE': 1000,  # Maximum page size to limit abuse
+    # "DATETIME_FORMAT": "%Y-%m-%d %I:%M %p",
+}
+
+# JWT settings configuration
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),  # Shorter lifetime for security
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),  # 1 day refresh token lifetime
+    "ROTATE_REFRESH_TOKENS": True,  # Enable rotation for better security
+    "BLACKLIST_AFTER_ROTATION": True,  # Blacklist old refresh tokens after rotation
+    "ALGORITHM": "HS256",  # Standard algorithm
+    "AUTH_HEADER_TYPES": ("Bearer",),  # Standard header type
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_USER_CLASS": "user.User",  # Custom user model
+}
+
+AUTH_USER_MODEL = 'user.User'

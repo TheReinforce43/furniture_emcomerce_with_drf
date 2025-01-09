@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from user.Model.user_model import User 
+from user.models  import User
 from django.contrib.auth import authenticate 
 from rest_framework_simplejwt.tokens import RefreshToken 
 

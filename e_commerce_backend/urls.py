@@ -16,8 +16,16 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("user/", include("user.urls")),
+    path("cart/", include("cart.urls")),
+    path("order_items/", include("order_items.urls")),
+    path("orders/", include("orders.urls")),
+    path("product/", include("product.urls")),
+    path("product_configuration/", include("product_configuration.urls")),
+    path("product_option/", include("product_option.urls")),
+    path("product_option_category/", include("product_option_category.urls")),
 ]
