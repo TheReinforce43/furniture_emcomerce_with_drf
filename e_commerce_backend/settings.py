@@ -168,20 +168,13 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    
-    
-    
-    # 'DEFAULT_PAGINATION_CLASS': 'Employee.pagination.DynamicPageSizePagination',
-     # Default page size if not specified in the request
-    #  'PAGE_SIZE': 100, 
-    # 'MAX_PAGE_SIZE': 1000,  # Maximum page size to limit abuse
-    # "DATETIME_FORMAT": "%Y-%m-%d %I:%M %p",
+
 }
 
 # JWT settings configuration
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=2),  # Shorter lifetime for security
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),  # Shorter lifetime for security
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),  # 1 day refresh token lifetime
     "ROTATE_REFRESH_TOKENS": True,  # Enable rotation for better security
     "BLACKLIST_AFTER_ROTATION": True,  # Blacklist old refresh tokens after rotation
