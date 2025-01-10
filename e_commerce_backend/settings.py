@@ -17,9 +17,13 @@ import os
 # django.setup()
 
 
-
+from datetime import timedelta
 from pathlib import Path
-from datetime import timedelta 
+import environ
+env = environ.Env()
+environ.Env.read_env()
+import os 
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +33,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure---$s=!bap$$$&=h-r4fes!$(3f_ql(rz@6nq)-8gu$_%yl%7n7"
+
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -112,13 +120,30 @@ WSGI_APPLICATION = "e_commerce_backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+# Here using sqlite3 
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+
+# here using postgresql 
+
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),  # Default to 5432 if not specified
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -174,8 +199,8 @@ REST_FRAMEWORK = {
 # JWT settings configuration
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),  # Shorter lifetime for security
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),  # 1 day refresh token lifetime
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=10),  # Shorter lifetime for security
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),  # 15 day refresh token lifetime
     "ROTATE_REFRESH_TOKENS": True,  # Enable rotation for better security
     "BLACKLIST_AFTER_ROTATION": True,  # Blacklist old refresh tokens after rotation
     "ALGORITHM": "HS256",  # Standard algorithm
