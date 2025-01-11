@@ -62,10 +62,8 @@ PROJECT_APPS = [
     'cart_item',
     'order_items',
     'orders',
-    'product_configuration',
-    'product_option',
-    'product_option_category',
-    'product'
+    'product',
+    'product_category',
     
 ]
 

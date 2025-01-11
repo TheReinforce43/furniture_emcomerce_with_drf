@@ -25,7 +25,6 @@ urlpatterns = [
     path("order_items/", include("order_items.urls")),
     path("orders/", include("orders.urls")),
     path("product/", include("product.urls")),
-    path("product_configuration/", include("product_configuration.urls")),
-    path("product_option/", include("product_option.urls")),
-    path("product_option_category/", include("product_option_category.urls")),
+    path("category/product/", include("product_category.urls")),
+    
 ]

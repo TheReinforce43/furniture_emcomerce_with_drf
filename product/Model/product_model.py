@@ -1,5 +1,6 @@
 from django.db import models 
-from product_option.Model.product_option_model import ProductOptionModel 
+# from product_option.Model.product_option_model import ProductOptionModel 
+from product_category.Model.category_model import ProductCategoryModel
 
 
 
@@ -12,7 +13,8 @@ class ProductModel(models.Model):
     base_price = models.DecimalField(max_digits=10, decimal_places=2)
     
     # product options are stored in a separate table
-    product_category = models.ForeignKey(ProductOptionModel,related_name='product_options',on_delete=models.CASCADE)
+    product_category = models.ForeignKey(ProductCategoryModel,related_name='product_category',on_delete=models.CASCADE,null=True)
+
     
     
 

@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="ProductModel",
+            name="ProductCategoryModel",
             fields=[
                 (
                     "id",
@@ -22,11 +22,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=200, unique=True)),
+                ("category_name", models.CharField(max_length=100, unique=True)),
                 ("description", models.TextField(blank=True, null=True)),
-                ("base_price", models.DecimalField(decimal_places=2, max_digits=10)),
-                ("created_at", models.DateTimeField(auto_now_add=True, null=True)),
-                ("updated_at", models.DateTimeField(auto_now=True, null=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
         ),
     ]
