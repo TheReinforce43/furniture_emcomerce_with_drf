@@ -64,6 +64,7 @@ PROJECT_APPS = [
     'orders',
     'product',
     'product_category',
+    'product_customize',
     
 ]
 
