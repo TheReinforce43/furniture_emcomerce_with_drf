@@ -42,6 +42,9 @@ class OptionModelViewSet(ModelViewSet):
     
 
     def get_serializer_class(self):
+        if self.action =='create':
+            return CreateOptionSerializer
+        
         
         dropdown_params = self.request.query_params.get('dropdown',None)
         if dropdown_params and dropdown_params.lower()=='true':

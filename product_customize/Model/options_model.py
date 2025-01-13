@@ -5,8 +5,8 @@ from product_customize.Model.attribute_model import AttributeModel
 
 class OptionModel(models.Model):
 
-    option_name = models.CharField(max_length=200)
-    attribute=models.ForeignKey(AttributeModel,related_name="option_text",on_delete=models.CASCADE,db_index=True)
+    option_name = models.CharField(max_length=200,unique=True)
+    attribute=models.ForeignKey(AttributeModel,related_name="option_text",on_delete=models.CASCADE,db_index=True,null=True)
 
 
     created_at = models.DateTimeField(auto_now_add=True)
