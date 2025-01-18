@@ -17,7 +17,7 @@ PyJWT==2.0.0
 pypiwin32==223
 python-decouple==3.8
 pytz==2024.1
-# pywin32==306
+pywin32==223
 setuptools==74.1.2
 six==1.16.0
 sqlparse==0.5.3
