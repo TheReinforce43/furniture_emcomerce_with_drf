@@ -215,3 +215,9 @@ SIMPLE_JWT = {
 }
 
 AUTH_USER_MODEL = 'user.User'
+
+# Update Python version compatibility
+python_version = ">=3.6,<3.9"
+
+# Remove pywin32 dependency
+# pywin32==306
